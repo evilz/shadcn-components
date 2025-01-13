@@ -5,7 +5,7 @@ class Button extends HTMLElement {
   
     constructor() {
       super();
-      this.attachShadow({ mode: "open" });
+      //this.attachShadow({ mode: "open" });
   
       // Default attributes
       this.variant = "default";
@@ -14,7 +14,8 @@ class Button extends HTMLElement {
       // Create a button element
       this.button = document.createElement("button");
       this.updateButtonStyles();
-      this.shadowRoot.appendChild(this.button);
+      this.appendChild(this.button);
+      //this.shadowRoot.appendChild(this.button);
     }
   
     connectedCallback() {
