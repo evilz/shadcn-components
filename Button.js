@@ -5,8 +5,14 @@ class Button extends HTMLElement {
   
     constructor() {
       super();
-      //this.attachShadow({ mode: "open" });
+      this.attachShadow({ mode: "open" });
   
+      shadowRoot.adoptedStyleSheets = Array.from(document.styleSheets).map(sheet => {
+        const newSheet = new CSSStyleSheet();
+        newSheet.replaceSync(Array.from(sheet.cssRules).map(rule => rule.cssText).join(' '));
+        return newSheet;
+      });
+
       // Default attributes
       this.variant = "default";
       this.size = "default";
@@ -14,8 +20,7 @@ class Button extends HTMLElement {
       // Create a button element
       this.button = document.createElement("button");
       this.updateButtonStyles();
-      this.appendChild(this.button);
-      //this.shadowRoot.appendChild(this.button);
+      this.shadowRoot.appendChild(this.button);
     }
   
     connectedCallback() {
