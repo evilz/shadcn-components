@@ -5,15 +5,15 @@ class Button extends HTMLElement {
   
     constructor() {
       super();
-      this.attachShadow({ mode: "open" });
+    //  this.attachShadow({ mode: "open" });
   
-      this.shadowRoot.adoptedStyleSheets.push(...Array.from(document.styleSheets)
-      .map(x => {
-        const sheet = new CSSStyleSheet();
-        const css = Array.from(x.cssRules).map(rule => rule.cssText).join(' ');
-        sheet.replaceSync(css);
-        return sheet;
-      }));
+      // this.shadowRoot.adoptedStyleSheets.push(...Array.from(document.styleSheets)
+      // .map(x => {
+      //   const sheet = new CSSStyleSheet();
+      //   const css = Array.from(x.cssRules).map(rule => rule.cssText).join(' ');
+      //   sheet.replaceSync(css);
+      //   return sheet;
+      // }));
 
       // Default attributes
       this.variant = "default";
@@ -29,7 +29,8 @@ class Button extends HTMLElement {
     this.button.textContent = initialText; // Set the text content to the button
 
     this.updateButtonStyles();
-    this.shadowRoot.appendChild(this.button);
+    //this.shadowRoot.appendChild(this.button);
+    this.appendChild(this.button);
     }
   
     connectedCallback() {
