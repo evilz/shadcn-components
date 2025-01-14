@@ -17,15 +17,21 @@ class Button extends HTMLElement {
       this.variant = "default";
       this.size = "default";
   
+
+      // Read and clear the current text content
+      const initialText = this.textContent.trim();
+      this.textContent = ""; // Clear the text content to prevent duplication
+
       // Create a button element
-      this.button = document.createElement("button");
-      this.updateButtonStyles();
-      this.shadowRoot.appendChild(this.button);
+    this.button = document.createElement("button");
+    this.button.textContent = initialText; // Set the text content to the button
+
+    this.updateButtonStyles();
+    this.shadowRoot.appendChild(this.button);
     }
   
     connectedCallback() {
       this.updateButtonStyles();
-      this.button.textContent = this.textContent || "Button";
     }
   
     attributeChangedCallback(name, oldValue, newValue) {
