@@ -7,7 +7,7 @@ class Button extends HTMLElement {
       super();
       this.attachShadow({ mode: "open" });
   
-      this.shadowRoot.adoptedStyleSheets.push(Array.from(document.styleSheets)
+      this.shadowRoot.adoptedStyleSheets.push(...Array.from(document.styleSheets)
       .map(x => {
         const sheet = new CSSStyleSheet();
         const css = Array.from(x.cssRules).map(rule => rule.cssText).join(' ');
