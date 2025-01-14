@@ -7,11 +7,13 @@ class Button extends HTMLElement {
       super();
       this.attachShadow({ mode: "open" });
   
-      this.shadowRoot.adoptedStyleSheets = Array.from(document.styleSheets).map(sheet => {
-        const newSheet = new CSSStyleSheet();
-        newSheet.replaceSync(Array.from(sheet.cssRules).map(rule => rule.cssText).join(' '));
-        return newSheet;
-      });
+      this.shadowRoot.adoptedStyleSheets.push(Array.from(document.styleSheets)
+      .map(x => {
+        const sheet = new CSSStyleSheet();
+        const css = Array.from(x.cssRules).map(rule => rule.cssText).join(' ');
+        sheet.replaceSync(css);
+        return sheet;
+      }));
 
       // Default attributes
       this.variant = "default";
